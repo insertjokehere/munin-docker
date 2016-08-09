@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ "$1" == "--help" || $# -eq 0 ]]; then
+    echo <<EOF
+$0 [plugin name]
+$0 [plugin name] [install as]
+EOF
+    exit 0
+fi
+
+if [[ $# -eq 2 ]]; then
+    link_name=/etc/munin/plugins/$2
+else
+    link_name=/etc/munin/plugins/$1
+fi
+
+ln -s /usr/share/munin/plugins/$1 $link_name
